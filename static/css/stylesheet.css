@@ -1,0 +1,41 @@
+:root {
+  --main-bg-color: rgb(90,90,90);
+  --light-bg-color: rgb(120,120,120);
+  --highlight-color: rgb(204,179,72);
+  --darklight-color: rgb(132,0,255);
+  --text-color: rgb(255,246,154);
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  font-family: Didot;
+  height: max-content;
+}
+
+div {
+  background-color: var(--light-bg-color);
+  padding: 6px 10px;
+  border-radius: 16px 2px 16px 16px;
+  width: max-content;
+  margin: 10px auto;
+  text-align: center;
+}
+
+#users {
+  border: 1pt solid black;
+  top: 0px;
+  right: 2%;
+  width: 35%;
+  position: absolute;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+}
+
+#buttons {
+  top: 0px;
+  right: 38%;
+  position: absolute;
+  text-align: right;
+}

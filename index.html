@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>chat</title>
+	<meta content="kiddspazz" title="author">
+	<link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+	<script src="/socket.io/socket.io.js"></script>
+
+</head>
+
+<body>
+	<p id='users'></p>
+
+	<script src='client.js'></script>
+
+	<form onsubmit='return false'>
+		<label for='chatBox'>type here:</label>
+		<input id='chatBox' type='text' value=''></input>
+		<button id='submitButton'>send chat</button>
+		<button id='changeUserName'>change username</button></br>
+	</form>
+
+</body>
+</html>
