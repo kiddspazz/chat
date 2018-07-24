@@ -1,0 +1,23 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "chatServer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiddspazz/chat.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "kiddspazz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiddspazz/chat/issues"
+  },
+  "homepage": "https://github.com/kiddspazz/chat#readme"
+}
