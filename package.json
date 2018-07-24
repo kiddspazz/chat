@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/kiddspazz/chat/issues"
   },
-  "homepage": "https://github.com/kiddspazz/chat#readme"
+  "homepage": "https://github.com/kiddspazz/chat#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
+  }
 }
