@@ -24,6 +24,7 @@ let messages = [];
 
 io.on('connection', function(socket) {
 	socket.on('message', function(data, fn) {
+		console.log('hi');
 		send(data, socket, fn);
 	});
 
@@ -70,7 +71,7 @@ function send(data, socket, fn) {
 function uniqueName(name, users) {
 	if (name === '' || name === null) {return false};
 	for (let user of users) {
-		if (user.userName === name && user.active) {return false};
+		if (user.name === name && user.active) {return false};
 	};
 	return true;
 }
