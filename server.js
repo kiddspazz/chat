@@ -53,17 +53,7 @@ function send(data, socket, fn) {
 		}
 
 		if (data.oldName) {
-			user.name = data.name;
-			let oldName = data.oldName;
-
-			messages.unshift({
-				body: `${oldName} change their name to ${user.name}`,
-				user: 'THE SERVER',
-				timeStamp: new Date()
-			});
-
-			io.emit('message', messages.slice(0, 20));
-			io.emit('status', users.filter(user => user.active));
+			changeName(data, user)
 			return;
 		}
 	}
@@ -95,4 +85,18 @@ function addNewUser(id, name) {
 
 	io.emit('status', users.filter(user => user.active));
 	io.emit('message', messages.slice(0, 20));
+}
+
+function changeName(data, user) {
+	user.name = data.name;
+	let oldName = data.oldName;
+
+	messages.unshift({
+		body: `${oldName} change their name to ${user.name}`,
+		user: 'THE SERVER',
+		timeStamp: new Date()
+	});
+
+	io.emit('message', messages.slice(0, 20));
+	io.emit('status', users.filter(user => user.active));
 }
