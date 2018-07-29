@@ -24,7 +24,6 @@ let messages = [];
 
 io.on('connection', function(socket) {
 	socket.on('message', function(data, fn) {
-		console.log('hi');
 		send(data, socket, fn);
 	});
 
@@ -57,15 +56,15 @@ function send(data, socket, fn) {
 			changeName(data, user)
 			return;
 		}
-	}
+	};
 
 	if (data.length > 0) {
 		messages.unshift({
 			body: data, user: user.name, timeStamp: new Date()
 		});
+	};
 
-		io.emit('message', messages.slice(0, 20));
-	}
+	io.emit('message', messages.slice(0, 20));
 }
 
 function uniqueName(name, users) {

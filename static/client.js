@@ -18,6 +18,7 @@ function init() {
 	});
 
 	let name = '';
+
 	submitName();
 
 	socket.on('message', function(data) {
@@ -33,27 +34,23 @@ function init() {
 		socket.close();
 	});
 
-	function submitName() {
-		let nameInfo;
+	function submitName(caller) {
+		let nameInfo = {name: name};
 
-		if (name) {
-			let oldName = name;
-			name = '';
-			nameInfo = {name: name, oldName: oldName};
-		} else {
-			nameInfo = {name: ''};
+		if (!name) {
+			name = nameInfo.name = prompt('user name:').toLowerCase();
+		} else if (typeof(caller) === "object") {
+			nameInfo.oldName = name;
+			nameInfo.name = name = prompt('change user name');
 		};
 
-		while (!name) {
-			name = prompt('user name:').toLowerCase();
-		};
-
-		nameInfo.name = name;
 		socket.emit('message', nameInfo, function(data) {
 			name = prompt(data).toLowerCase();
 			submitName();
 		});
 
+		let label = document.getElementById('label');
+		label.innerText = `${name} type here:`
 		chatBox.focus();
 	};
 
@@ -67,13 +64,15 @@ function init() {
 	};
 
 	function addChat(data) {
-		chatRoom.innerText = data.map(
-			e =>
-				"at " +
-				new Date(e.timeStamp).toLocaleTimeString() + ", " +
-				e.user + " says: " +
-				e.body
-		).join("\n");
+		if (data.map) {
+			chatRoom.innerText = data.map(
+				e =>
+					"at " +
+					new Date(e.timeStamp).toLocaleTimeString() + ", " +
+					e.user + " says: " +
+					e.body
+			).join("\n");
+		}
 
 	}
 
