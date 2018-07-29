@@ -34,24 +34,23 @@ function init() {
 		socket.close();
 	});
 
-	function submitName(caller) {
-		let nameInfo = {name: name};
+	function submitName(check) {
+		if (typeof(check) === 'string') {
+			newName = prompt(`${check}choose user name:`).toLowerCase();
+		} else {
+			newName = prompt(`choose user name:`).toLowerCase();
+		}
 
-		if (!name) {
-			name = nameInfo.name = prompt('user name:').toLowerCase();
-		} else if (typeof(caller) === "object") {
-			nameInfo.oldName = name;
-			nameInfo.name = name = prompt('change user name');
-		};
-
-		socket.emit('message', nameInfo, function(data) {
-			name = prompt(data).toLowerCase();
-			submitName();
+		socket.emit('message', {oldName: name, name: newName}, function(data) {
+			submitName(data);
+			return;
 		});
 
+		name = newName;
 		let label = document.getElementById('label');
 		label.innerText = `${name} type here:`
 		chatBox.focus();
+
 	};
 
 	function statusUpdate(newStatus) {

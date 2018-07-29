@@ -43,7 +43,7 @@ function send(data, socket, fn) {
 
 	if (data.name) {
 		if (!(uniqueName(data.name, users))) {
-			fn('name already taken--choose user name:');
+			fn('name taken, ');
 			return;
 		}
 
@@ -88,14 +88,13 @@ function addNewUser(id, name) {
 }
 
 function changeName(data, user) {
-	user.name = data.name;
-	let oldName = data.oldName;
-
 	messages.unshift({
-		body: `${oldName} change their name to ${user.name}`,
+		body: `${user.name} change their name to ${data.name}`,
 		user: 'THE SERVER',
 		timeStamp: new Date()
 	});
+
+	user.name = data.name;
 
 	io.emit('message', messages.slice(0, 20));
 	io.emit('status', users.filter(user => user.active));
